@@ -36,7 +36,7 @@ const About = () => {
           title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
           containerClass="mt-5 !text-black text-center"
         />
-        <div className="about-subtext flex flex-col items-center">
+        <div className="about-subtext flex flex-col items-center sm:text-[100px]">
           <p>The Game of Games begins—your life, now an epic MMORPG</p>
           <p className="text-gray-500 max-w-lg text-sm text-center">
             Zentry unites every player from countless games and platforms,{" "}
