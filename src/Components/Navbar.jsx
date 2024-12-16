@@ -15,37 +15,31 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+// State management
 const NavBar = () => {
-  // State management
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [activeNavItem, setActiveNavItem] = useState(null);
 
-  // Refs
   const audioElementRef = useRef(null);
   const navContainerRef = useRef(null);
   const mobileMenuRef = useRef(null);
-  const navItemRefs = useRef({});
   const hoverBackgroundRef = useRef(null);
 
-  // Scroll management
   const { y: currentScrollY } = useWindowScroll();
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Audio and indicator toggle
   const toggleAudioIndicator = () => {
     setIsAudioPlaying((prev) => !prev);
     setIsIndicatorActive((prev) => !prev);
   };
 
-  // Audio playback effect
   useEffect(() => {
     if (audioElementRef.current) {
       isAudioPlaying
@@ -54,7 +48,6 @@ const NavBar = () => {
     }
   }, [isAudioPlaying]);
 
-  // Scroll-based navbar visibility
   useEffect(() => {
     const navContainer = navContainerRef.current;
     if (!navContainer) return;
@@ -73,16 +66,14 @@ const NavBar = () => {
     setLastScrollY(currentScrollY);
   }, [currentScrollY, lastScrollY]);
 
-  // Navbar visibility animation
   useEffect(() => {
     gsap.to(navContainerRef.current, {
       y: isNavVisible ? 0 : -100,
       opacity: isNavVisible ? 1 : 0,
-      duration: 0.2,
+      duration: 0.05,
     });
   }, [isNavVisible]);
 
-  // Mobile menu animation
   useEffect(() => {
     if (mobileMenuRef.current) {
       gsap.to(mobileMenuRef.current, {
@@ -94,12 +85,10 @@ const NavBar = () => {
     }
   }, [isMobileMenuOpen]);
 
-  // Nav item hover effect
   const handleNavItemHover = (name, event) => {
     const targetElement = event.currentTarget;
     setActiveNavItem(name);
 
-    // Animate hover background
     if (hoverBackgroundRef.current && targetElement) {
       const rect = targetElement.getBoundingClientRect();
       gsap.to(hoverBackgroundRef.current, {
@@ -107,8 +96,8 @@ const NavBar = () => {
         height: rect.height + 10,
         x: targetElement.offsetLeft - 10,
         opacity: 1,
-        duration: 0.15, // Reduced duration for faster animation
-        ease: "power1.out", // Faster, smoother easing
+        duration: 0.2,
+        ease: "power2.out",
       });
     }
   };
@@ -116,14 +105,14 @@ const NavBar = () => {
   const handleNavItemLeave = () => {
     setActiveNavItem(null);
 
-    // Hide hover background
     if (hoverBackgroundRef.current) {
       gsap.to(hoverBackgroundRef.current, {
         width: 0,
         height: 0,
+        x: 0,
         opacity: 0,
-        duration: 0.1, // Reduced duration for faster animation
-        ease: "power1.out", // Faster, smoother easing
+        duration: 0.1,
+        ease: "power2.out",
       });
     }
   };
@@ -133,17 +122,19 @@ const NavBar = () => {
       ref={navContainerRef}
       className="fixed inset-x-0 top-0 z-50 h-16 border-none transition-all duration-700 font-robertmedium bg-opacity-80"
     >
-      <header className="relative w-full h-full">
-        <nav className="flex items-center justify-between p-4 h-full max-w-6xl mx-auto">
-          {/* Logo Section */}
-          <div className="flex items-center gap-2 sm:gap-4">
+      <header className="relative w-full h-full ">
+        <nav
+          className="flex items-center justify-between p-4 h-full max-w-6xl mx-auto"
+          href="#hero"
+        >
+          {/* Logo */}
+          <div className="flex items-center gap-2 sm:gap-4 cursor-pointer">
             <img
               src="/logo.png"
               alt="Zentry Logo"
-              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain"
             />
 
-            {/* Desktop Product Buttons */}
             <div className="hidden md:flex items-center gap-2">
               <Button
                 id="product-button"
@@ -159,14 +150,11 @@ const NavBar = () => {
             </div>
           </div>
 
-          {/* Navigation and Audio Section */}
           <div className="flex items-center space-x-4">
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4 relative">
-              {/* Hover Background */}
               <div
                 ref={hoverBackgroundRef}
-                className="absolute z-0 bg-white rounded-full opacity-0 transition-all duration-300"
+                className="absolute z-0 bg-white rounded-full opacity-0 transition-all duration-250"
                 style={{
                   width: 0,
                   height: 0,
@@ -185,9 +173,8 @@ const NavBar = () => {
                 >
                   <a
                     href={item.href}
-                    ref={(el) => (navItemRefs.current[item.name] = el)}
                     className={clsx(
-                      "text-xs sm:text-sm relative z-10 px-2 py-1 transition-colors duration-300",
+                      "text-xs sm:text-sm relative z-10 px-2 py-1 transition-colors duration-200",
                       activeNavItem === item.name ? "text-black" : "text-white"
                     )}
                   >
@@ -197,10 +184,9 @@ const NavBar = () => {
               ))}
             </div>
 
-            {/* Rest of the component remains the same */}
             <button
               onClick={toggleAudioIndicator}
-              className="flex items-center space-x-0.5"
+              className="flex items-center justify-center space-x-0.5 group w-8 h-8"
               aria-label={isAudioPlaying ? "Pause audio" : "Play audio"}
             >
               <audio
@@ -209,23 +195,27 @@ const NavBar = () => {
                 src="/audio/loop.mp3"
                 loop
               />
-              {[1, 2, 3, 4].map((bar) => (
-                <div
-                  key={bar}
-                  className={clsx("indicator-line", {
-                    active: isIndicatorActive,
-                  })}
-                  style={{
-                    animationDelay: `${bar * 0.1}s`,
-                  }}
-                />
-              ))}
+              <div className="flex space-x-1">
+                {[1, 2, 3, 4].map((bar) => (
+                  <span
+                    key={bar}
+                    className={clsx(
+                      "w-[1.5px] h-3 bg-white transform rounded-sm transition-transform ease-in-out duration-300",
+                      isAudioPlaying
+                        ? `animate-bar group-hover:scale-y-[1.8]`
+                        : "scale-y-[1] bg-gray-800"
+                    )}
+                    style={{
+                      animationDelay: `${bar * 0.3}s`,
+                    }}
+                  ></span>
+                ))}
+              </div>
             </button>
 
-            {/* Mobile menu toggle and other sections remain the same */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden"
+              className="md:hidden z-50 text-white"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMobileMenuOpen ? (
@@ -235,9 +225,26 @@ const NavBar = () => {
               )}
             </button>
           </div>
-
-          {/* Mobile Menu sections remain the same */}
         </nav>
+
+        <div
+          ref={mobileMenuRef}
+          className="fixed inset-y-0 right-0 left-40 z-40 w-3/4 max-w-sm text-white transition-transform transform translate-x-full md:hidden"
+        >
+          <ul className="flex flex-col space-y-1 p-4 backdrop-blur-xl z-40">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  onClick={toggleMobileMenu}
+                  className="block text-sm py-2 px-3 rounded-md hover:bg-gray-700/30 transition-colors"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </header>
     </div>
   );
