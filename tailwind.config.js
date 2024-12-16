@@ -26,6 +26,15 @@ export default {
           300: "#EDFF66",
         },
       },
+      keyframes: {
+        bar: {
+          "0%, 100%": { transform: "scaleY(1)" },
+          "50%": { transform: "scaleY(1.8)" },
+        },
+      },
+      animation: {
+        bar: "bar 1s infinite ease-in-out",
+      },
     },
   },
   plugins: [],
