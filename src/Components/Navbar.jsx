@@ -96,7 +96,7 @@ const NavBar = () => {
         height: rect.height + 10,
         x: targetElement.offsetLeft - 10,
         opacity: 1,
-        duration: 0.2,
+        duration: 0.25, // Smooth animation when switching
         ease: "power2.out",
       });
     }
@@ -107,11 +107,8 @@ const NavBar = () => {
 
     if (hoverBackgroundRef.current) {
       gsap.to(hoverBackgroundRef.current, {
-        width: 0,
-        height: 0,
-        x: 0,
         opacity: 0,
-        duration: 0.1,
+        duration: 0.1, // Quick fade-out
         ease: "power2.out",
       });
     }
@@ -154,13 +151,15 @@ const NavBar = () => {
             <div className="hidden md:flex items-center space-x-4 relative">
               <div
                 ref={hoverBackgroundRef}
-                className="absolute z-0 bg-white rounded-full opacity-0 transition-all duration-250"
+                className="absolute z-0 bg-white rounded-full opacity-0"
                 style={{
                   width: 0,
                   height: 0,
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   top: "-5px",
                   left: 0,
+                  transition:
+                    "opacity 0.1s ease, transform 0s, width 0s, height 0s",
                 }}
               />
 
