@@ -90,7 +90,7 @@ export const BentoCard = ({
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/20"
+              className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-black px-5 py-2 text-xs uppercase text-white/50"
             >
               <div
                 className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
@@ -104,9 +104,10 @@ export const BentoCard = ({
             </div>
 
             {showLearnMore && (
-              <button className="relative z-20 border rounded-full border-yellow-400 bg-transparent px-5 py-2 text-xs uppercase text-yellow-400 transition duration-300 hover:text-yellow-500 hover:scale-105">
-                Learn More
-              </button>
+              <div className="relative flex w-fit cursor-pointer items-center gap-1 rounded-full bg-black px-5 py-2 text-xs uppercase text-yellow/20 transition duration-300 hover:bg-[#edff66] hover:text-black">
+                <p className="relative z-20">Launch Site</p>
+                <TiLocationArrow className="relative z-20" />
+              </div>
             )}
           </div>
         )}
@@ -134,7 +135,7 @@ const Features = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: "power1.out",
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
@@ -149,16 +150,16 @@ const Features = () => {
     <section className="bg-black pb-52" ref={featuresRef}>
       <div className="container mx-auto px-3 md:px-10">
         <div className="px-5 py-32">
-          <p className="font-circular-web text-lg text-blue-50">
+          <p className="font-circular-web text-base text-blue-50">
             Dive into the 'Game of Games' Universe
           </p>
-          <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
+          <p className="max-w-md font-circular-web text-base text-blue-50 opacity-50">
             Immerse yourself in a rich and ever-expanding ecosystem where a
             vibrant array of products converge into an interconnected universe.
           </p>
         </div>
 
-        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
+        <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh] object-cover">
           <BentoCard
             src="videos/feature-1.mp4"
             title={
@@ -184,8 +185,7 @@ const Features = () => {
               isComingSoon
             />
           </BentoTilt>
-
-          <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+          <BentoTilt className="bento-tilt_1 row-span-1 ms-0 md:ms-0 lg:me-14 md:col-span-1 sm:w-full sm:flex sm:justify-center">
             <BentoCard
               src="videos/feature-3.mp4"
               title={
@@ -199,7 +199,7 @@ const Features = () => {
             />
           </BentoTilt>
 
-          <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
+          <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0 sm:justify-center">
             <BentoCard
               src="videos/feature-4.mp4"
               title={
