@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Component for tilt effect on hover
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
   const itemRef = useRef(null);
@@ -42,6 +43,7 @@ export const BentoTilt = ({ children, className = "" }) => {
   );
 };
 
+// Component for displaying a card with video and text
 export const BentoCard = ({
   src,
   title,
@@ -116,6 +118,7 @@ export const BentoCard = ({
   );
 };
 
+// Main Features component
 const Features = () => {
   const featuresRef = useRef(null);
 
@@ -124,6 +127,7 @@ const Features = () => {
       ".bento-tilt_1, .bento-tilt_2"
     );
 
+    //Animate the card when scrolling
     cards.forEach((card, index) => {
       gsap.fromTo(
         card,
@@ -135,7 +139,7 @@ const Features = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power1.out",
+          ease: "power1.inOut",
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
