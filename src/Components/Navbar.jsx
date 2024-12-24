@@ -108,8 +108,9 @@ const NavBar = () => {
     if (hoverBackgroundRef.current) {
       gsap.to(hoverBackgroundRef.current, {
         opacity: 0,
-        duration: 0.05, // Quick fade-out
+        duration: 0.2, // Increased duration for smoother fade-out
         ease: "power1.out",
+        delay: 0.5, // Added delay to ensure smooth transition
       });
     }
   };
