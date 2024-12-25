@@ -28,8 +28,9 @@ const Story = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const RorateX = ((y - centerY) / centerY) * -10;
-    const RorateY = ((x - centerX) / centerX) * 10;
+    // Calculate rotation values
+    const RorateX = ((y - centerY) / centerY) * -12;
+    const RorateY = ((x - centerX) / centerX) * 12;
 
     gsap.to(element, {
       rotateX: RorateX,

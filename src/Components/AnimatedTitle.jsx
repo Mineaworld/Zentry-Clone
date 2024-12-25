@@ -26,7 +26,7 @@ const AnimatedTitle = ({ title, containerClass }) => {
           y: 0,
           rotateY: 0,
           rotateX: 0,
-          color: "black",
+          // color: "black",
           ease: "power2.inOut",
           stagger: 0.02,
         },
