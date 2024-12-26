@@ -4,6 +4,8 @@ import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import Features from "./Components/Features";
 import Story from "./Components/Story";
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
       <About />
       <Features />
       <Story />
+      <Contact />
+      <Footer />
     </main>
   );
 };
