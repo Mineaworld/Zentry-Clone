@@ -138,7 +138,7 @@ const Story = () => {
           <div className="relative size-full" ref={titleRef}>
             <AnimatedTitle
               title="the st<b>o</b>ry of <br /> a hidden real<b>m</b>"
-              containerClass="!text-blue-50 mt-5 pointer-events-none mix-blend-difference relative z-10 text-[8px] md:text-[10px]"
+              containerClass="!text-blue-50 mt-5 pointer-events-none mix-blend-difference relative z-10"
             />
             <div className="story-img-container">
               <div className="story-img-mask">
