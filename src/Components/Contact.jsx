@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 const ImageClip = ({ src, clipClass }) => {
   return (
@@ -30,6 +31,14 @@ const Contact = () => {
         </div>
         <div className="flex flex-col items-center text-center ">
           <p className="font-general  uppercase text-[10px]">join zentry</p>
+          <p className="mt-10 special-font w-full font-zentry text-5xl md:text-[6rem] leading-[0.9]">
+            Let's b<b>u</b>ild the <br /> new era of g<b>a</b>ming <br />t
+            <b>o</b>gether
+          </p>
+          <Button
+            title="Contact Us"
+            containerClass="mt-10 cusor-pointer hover:scale-110 transition duration-500 ease-in-out"
+          ></Button>
         </div>
       </div>
     </div>
