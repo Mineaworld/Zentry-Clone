@@ -171,7 +171,7 @@ const Story = () => {
               <Button
                 id="realm-button"
                 title="Discover Prologue"
-                containerClass="mt-5 hover:scale-105 transition duration-200 ease-in-out"
+                containerClass="mt-5 hover:scale-105 transition duration-500 ease-in-out"
                 ref={buttonRef}
               />
             </div>
